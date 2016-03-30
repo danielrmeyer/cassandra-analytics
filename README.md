@@ -72,7 +72,7 @@ be able to properly destroy your resources and you will have to manually
 destroy the volumes before terraform can finish its work.
 
   ```
-  sudo service cassandra stop
+  sudo pkill java
   sudo umount /var/lib/cassandra
   ```
 

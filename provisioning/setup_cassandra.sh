@@ -20,7 +20,7 @@ function create_fs_and_mount {
 create_fs_and_mount
 sudo apt-get update
 sudo apt-get install -y openjdk-8-jdk
-sudo apt-get install -y gcc libev4 libev-dev python-dev
+sudo apt-get install -y gcc libev4 libev-dev python-dev python-pip
 sudo pip install cassandra-driver
 sudo apt-get install -y emacs
 

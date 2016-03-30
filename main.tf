@@ -100,3 +100,43 @@ resource "aws_security_group" "allow_all_ssh_access" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "allow_spark_ui_access" {
+  name = "allow_spark_ui_access"
+  description = "Allow access to spark ui from any ip"
+  vpc_id = "${var.vpc_id}"
+  tags {
+    Name = "var.user_name"
+  }
+  
+  ingress {
+    from_port = 4040
+    to_port = 4040
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "allow_all_subnet_traffic" {
+  name = "allow_all_subnet_traffic"
+  description =  "Allow all traffic from inside subnet"
+  vpc_id = "${var.vpc_id}"
+
+  tags {
+    Name = "var.user_name"
+  }
+
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["${var.source_cidr_block}"]
+  }
+}
